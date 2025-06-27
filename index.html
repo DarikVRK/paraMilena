@@ -112,10 +112,10 @@
       from {opacity: 0; transform: translateY(50px);}
       to {opacity: 1; transform: translateY(0);}
     }
-    /* dedicatoria button */
-    .dedicatoria-btn {
+    /* botones románticos */
+    .romantic-btn {
       display: block;
-      margin: 30px auto;
+      margin: 20px auto;
       background-color: #e91e63;
       color: white;
       border: none;
@@ -127,7 +127,7 @@
       transition: transform 0.3s;
       animation: fadeInUp 3s ease;
     }
-    .dedicatoria-btn:hover {
+    .romantic-btn:hover {
       transform: scale(1.05);
       background-color: #d81b60;
     }
@@ -203,15 +203,16 @@ todavía.
     </p>
   </section>
 
-  <button class="dedicatoria-btn" onclick="mostrarDedicatoria()">Ver mi dedicatoria para ti ❤️</button>
+  <button class="romantic-btn" onclick="mostrarDedicatoria()">Ver mi dedicatoria para ti ❤️</button>
+  <button class="romantic-btn" onclick="confirmarCompromiso()">Si aceptas pasar tu vida conmigo, dale click</button>
 
   <section class="gallery">
-    <img src="foto1.jpeg" alt="Foto 1" class="active">
-    <img src="foto2.jpeg" alt="Foto 2">
-    <img src="foto3.jpeg" alt="Foto 3">
-    <img src="foto4.jpeg" alt="Foto 4">
-    <img src="foto5.jpeg" alt="Foto 5">
-    <img src="foto6.jpeg" alt="Foto 6">
+    <img src="foto1.jpg" alt="Foto 1" class="active">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+    <img src="foto4.jpg" alt="Foto 4">
+    <img src="foto5.jpg" alt="Foto 5">
+    <img src="foto6.jpg" alt="Foto 6">
   </section>
 
   <footer>Con todo mi amor, Dani ❤️</footer>
@@ -241,6 +242,11 @@ todavía.
     // dedicatoria
     function mostrarDedicatoria() {
       alert("Milena, gracias por existir en mi vida. Te amo con todo mi corazón ❤️");
+    }
+
+    // compromiso
+    function confirmarCompromiso() {
+      alert("Ahora estás comprometida a cuidarme siempre, pato... patoa la vida ❤️");
     }
   </script>
 </body>
