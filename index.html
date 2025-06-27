@@ -4,27 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para Mi Amor Milena</title>
-  <!-- Google Fonts romántica y legible -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Great Vibes', cursive;
-      background: linear-gradient(135deg, #ffe6ec, #ffffff);
       color: #333;
       overflow-x: hidden;
       position: relative;
+      background: linear-gradient(270deg, #ffe6ec, #fff0f5, #ffe6ec);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position:0% 50%}
+      50% {background-position:100% 50%}
+      100% {background-position:0% 50%}
     }
     header {
       background-color: #e91e63;
       color: white;
       padding: 20px;
       text-align: center;
-      font-size: 2.5em;
+      font-size: 3em;
       letter-spacing: 1px;
       position: relative;
       z-index: 10;
+      animation: fadeIn 2s ease;
     }
     section.poem {
       padding: 20px;
@@ -35,34 +43,35 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       position: relative;
       z-index: 10;
+      animation: fadeInUp 2s ease;
     }
     section.poem h2 {
       text-align: center;
       color: #e91e63;
-      font-size: 2em;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
     section.poem p {
       white-space: pre-line;
       line-height: 1.7;
       font-size: 1.5em;
+      text-align: center;
     }
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin: 30px;
-      position: relative;
-      z-index: 10;
+      margin: 30px auto;
+      max-width: 700px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: fadeInUp 3s ease;
     }
     .gallery img {
-      max-width: 200px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
+      width: 100%;
+      display: none;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .gallery img.active {
+      display: block;
+      animation: fadeIn 2s ease;
     }
     footer {
       text-align: center;
@@ -95,10 +104,37 @@
       20% { opacity: 1; }
       100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(50px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    /* dedicatoria button */
+    .dedicatoria-btn {
+      display: block;
+      margin: 30px auto;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+      animation: fadeInUp 3s ease;
+    }
+    .dedicatoria-btn:hover {
+      transform: scale(1.05);
+      background-color: #d81b60;
+    }
   </style>
 </head>
 <body>
-  <!-- música de fondo con controles visibles -->
+  <!-- música de fondo con controles -->
   <audio src="cancion.mp3" autoplay loop controls style="position:fixed;bottom:10px;left:10px;z-index:1000;"></audio>
 
   <!-- corazones -->
@@ -167,8 +203,10 @@ todavía.
     </p>
   </section>
 
+  <button class="dedicatoria-btn" onclick="mostrarDedicatoria()">Ver mi dedicatoria para ti ❤️</button>
+
   <section class="gallery">
-    <img src="foto1.jpeg" alt="Foto 1">
+    <img src="foto1.jpeg" alt="Foto 1" class="active">
     <img src="foto2.jpeg" alt="Foto 2">
     <img src="foto3.jpeg" alt="Foto 3">
     <img src="foto4.jpeg" alt="Foto 4">
@@ -179,6 +217,7 @@ todavía.
   <footer>Con todo mi amor, Dani ❤️</footer>
 
   <script>
+    // corazones flotantes
     const hearts = document.getElementById('hearts');
     setInterval(() => {
       const heart = document.createElement('div');
@@ -189,6 +228,20 @@ todavía.
       hearts.appendChild(heart);
       setTimeout(() => heart.remove(), 7000);
     }, 500);
+
+    // carrusel automático
+    let current = 0;
+    const images = document.querySelectorAll(".gallery img");
+    setInterval(() => {
+      images[current].classList.remove("active");
+      current = (current + 1) % images.length;
+      images[current].classList.add("active");
+    }, 4000);
+
+    // dedicatoria
+    function mostrarDedicatoria() {
+      alert("Milena, gracias por existir en mi vida. Te amo con todo mi corazón ❤️");
+    }
   </script>
 </body>
 </html>
