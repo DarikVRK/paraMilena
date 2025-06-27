@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para Mi Amor Milena</title>
-  <!-- Google Fonts romántica -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <!-- Fuente romántica legible -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Dancing Script', cursive;
+      font-family: 'Lora', serif;
       background: linear-gradient(135deg, #ffe6ec, #ffffff);
       color: #333;
+      overflow-x: hidden;
     }
     header {
       background-color: #e91e63;
@@ -21,6 +22,8 @@
       text-align: center;
       font-size: 2.5em;
       letter-spacing: 1px;
+      position: relative;
+      z-index: 10;
     }
     section.poem {
       padding: 20px;
@@ -29,6 +32,8 @@
       background-color: #ffffffee;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 10;
     }
     section.poem h2 {
       text-align: center;
@@ -38,7 +43,7 @@
     section.poem p {
       white-space: pre-line;
       line-height: 1.7;
-      font-size: 1.3em;
+      font-size: 1.2em;
     }
     .gallery {
       display: flex;
@@ -46,6 +51,8 @@
       justify-content: center;
       gap: 15px;
       margin: 30px;
+      position: relative;
+      z-index: 10;
     }
     .gallery img {
       max-width: 220px;
@@ -61,10 +68,42 @@
       padding: 20px;
       color: #555;
       font-size: 1em;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* corazones flotantes */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      color: #ff4081;
+      font-size: 2em;
+      animation: float 5s infinite ease-in;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
     }
   </style>
 </head>
 <body>
+  <!-- música de fondo -->
+  <audio src="cancion.mp3" autoplay loop controls style="display:none"></audio>
+
+  <!-- corazones -->
+  <div class="hearts" id="hearts"></div>
+
   <header>Para Mi Amor Milena</header>
 
   <section class="poem">
@@ -129,12 +168,25 @@ todavía.
   </section>
 
   <section class="gallery">
-    <!-- Aquí pegas los links reales -->
     <img src="https://tuimagen1.jpg" alt="Foto 1">
     <img src="https://tuimagen2.jpg" alt="Foto 2">
     <img src="https://tuimagen3.jpg" alt="Foto 3">
   </section>
 
   <footer>Con todo mi amor, Dani ❤️</footer>
+
+  <script>
+    // generar corazones animados
+    const hearts = document.getElementById('hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.textContent = '❤️';
+      hearts.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+  </script>
 </body>
 </html>
