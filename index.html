@@ -81,8 +81,8 @@
       position: relative;
       z-index: 10;
     }
-    /* corazones flotantes */
-    .hearts {
+    /* corazones y girasoles flotantes */
+    .floating {
       position: fixed;
       top: 0;
       left: 0;
@@ -92,12 +92,11 @@
       overflow: hidden;
       z-index: 1;
     }
-    .heart {
+    .floater {
       position: absolute;
-      color: #ff4081;
       font-size: 2em;
       animation: float 6s linear infinite;
-      opacity: 0.8;
+      opacity: 0.9;
     }
     @keyframes float {
       0% { transform: translateY(100vh) scale(1); opacity: 0; }
@@ -137,8 +136,8 @@
   <!-- música de fondo con controles -->
   <audio src="cancion.mp3" autoplay loop controls style="position:fixed;bottom:10px;left:10px;z-index:1000;"></audio>
 
-  <!-- corazones -->
-  <div class="hearts" id="hearts"></div>
+  <!-- corazones + girasoles -->
+  <div class="floating" id="floating"></div>
 
   <header>Para Mi Amor Milena</header>
 
@@ -207,27 +206,27 @@ todavía.
   <button class="romantic-btn" onclick="confirmarCompromiso()">Si aceptas pasar tu vida conmigo, dale click</button>
 
   <section class="gallery">
-    <img src="foto1.jpg" alt="Foto 1" class="active">
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
-    <img src="foto4.jpg" alt="Foto 4">
-    <img src="foto5.jpg" alt="Foto 5">
-    <img src="foto6.jpg" alt="Foto 6">
+    <img src="foto1.jpeg" alt="Foto 1" class="active">
+    <img src="foto2.jpeg" alt="Foto 2">
+    <img src="foto3.jpeg" alt="Foto 3">
+    <img src="foto4.jpeg" alt="Foto 4">
+    <img src="foto5.jpeg" alt="Foto 5">
+    <img src="foto6.jpeg" alt="Foto 6">
   </section>
 
   <footer>Con todo mi amor, Dani ❤️</footer>
 
   <script>
-    // corazones flotantes
-    const hearts = document.getElementById('hearts');
+    // corazones y girasoles flotantes
+    const floating = document.getElementById('floating');
     setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      heart.textContent = '❤️';
-      hearts.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
+      const floater = document.createElement('div');
+      floater.className = 'floater';
+      floater.style.left = Math.random() * 100 + 'vw';
+      floater.style.animationDuration = (4 + Math.random() * 3) + 's';
+      floater.textContent = Math.random() > 0.5 ? '❤️' : '🌻';
+      floating.appendChild(floater);
+      setTimeout(() => floater.remove(), 7000);
     }, 500);
 
     // carrusel automático
